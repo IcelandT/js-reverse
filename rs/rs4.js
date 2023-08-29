@@ -1135,11 +1135,13 @@ function generate_window_ts(execution_code) {
 
 /* ------------------- 真 cookie 生成算法 ------------------ */
 var _$IS, _$nI = null;
+var _$8k = 0xFE;
 var _$TG = 0
     , _$F2 = 0
     , _$RM = 1
     , _$Lb = 64
     , _$5R = 1690792114996
+    , _$d$ = 0
 function _$lQ(_$ZR, _$VP) {
     if (_$VP === _$IS || _$VP)
         _$TG |= _$ZR;
@@ -1154,8 +1156,8 @@ function _$2F() {
     return Math['ceil'](new Date()['getTime']() / 1000);
 }
 function _$jM(_$ZR) {
-        return [(_$ZR >>> 24) & 0xFF, (_$ZR >>> 16) & 0xFF, (_$ZR >>> 8) & 0xFF, _$ZR & 0xFF];
-    }
+    return [(_$ZR >>> 24) & 0xFF, (_$ZR >>> 16) & 0xFF, (_$ZR >>> 8) & 0xFF, _$ZR & 0xFF];
+}
 function _$m6(_$ZR) {
     var _$2v = Math['ceil'](Math['random']() * 256);
     _$ZR = _$ZR['concat'](_$jM(_$2F()));
@@ -1220,6 +1222,20 @@ function _$r5(_$ZR) {
     }
     return _$IV;
 }
+function _$bD() {
+    var _$2v = _$8A(get_fake_cookie_data(22) + window.$_ts._$Yt);
+    return _$2v;
+}
+function _$jn(_$ZR) {
+    var _$ZR = 100;
+    var _$2v = 3;
+    return _$ZR + _$2v;
+}
+function _$e0(_$ZR) {
+    if (_$ZR < 2)
+        return 1;
+    return _$ZR * _$e0(_$ZR - 1);
+}
 function first_G3_array(fake_cookie) {
     var _$G3 = '';
     var _$2v = fake_cookie.charAt(0);
@@ -1255,7 +1271,30 @@ function generate_cookie(meta_content, execution_code) {
     var _$_C = new Date()['getTime']() - Math.floor(Math.random() * (5000 - 3000 + 1)) + 3000;
     var _$aW = _$s4(_$_C);
     var _$IV = _$r5([(_$aW / 0x100000000) & 0xffffffff, _$aW & 0xffffffff, Math['floor'](_$5R / 1000), Math['floor'](_$_C / 1000)]);
-    var _$5J = _$m4(268, 13)
+    var _$aW = new Array(128);
+    _$2v = 0;
+    _$aW[_$2v++] = _$8k;
+    _$aW[_$2v++] = 3;
+    _$aW[_$2v++] = 1;
+    var _$IV = _$2v++;
+    _$aW[_$IV] = _$IS;
+    _$TG |= 8388608;
+    _$TG |= 16777216;
+    _$TG |= 1024;
+    _$F2 |= 2;
+    _$F2 |= 8;
+    _$F2 |= 4;
+    _$aW[_$2v++] = _$r5([_$TG, _$d$]);
+    _$aW[_$2v++] = _$F2;
+    _$aW[_$2v++] = 1;
+    // window.$_ts 内部值变更
+    window.$_ts._$u3 = 0;
+    window.$_ts._$Lu = _$jn();
+    window.$_ts._$eX = 102;
+    window.$_ts._$Uj = _$e0(6) / 3;
+    _$aW[_$2v++] = _$8A(window.$_ts._$W9)['concat']([window.$_ts._$Lu, window.$_ts._$u3, window.$_ts._$eX, window.$_ts._$Uj])
+
+    _$G3 = xxx
 }
 
 generate_cookie()
